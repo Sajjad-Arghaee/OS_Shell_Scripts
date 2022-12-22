@@ -62,6 +62,10 @@ int main()
                     }else{
                         execlp("/home/yosef/Desktop/OperatingSystem_MidTermProject/cd",token,currentPath,NULL);
                     }
+                }else if(!strcmp("mkdir", token)){
+                    token = strtok(NULL, " ") ;
+                    execlp("/bin/mkdir","mkdir",token,NULL) ;
+                    return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
                     return 0 ;
