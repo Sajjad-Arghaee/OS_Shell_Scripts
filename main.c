@@ -4,6 +4,8 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <limits.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #define MAX_LENGTH 1000
 
@@ -14,12 +16,19 @@ int main()
     char currentPath[PATH_MAX];
     getcwd(currentPath, sizeof(currentPath));
     
-    while (1){
-        char command[MAX_LENGTH] ;
-        printf("%s> ",currentPath);
-        fgets(command, MAX_LENGTH, stdin);
+    using_history();
 
-        if(!strcmp("exit\n", command)){
+    while (1){
+        char* command ;
+        char header[PATH_MAX+1] ;
+        strcpy(header, currentPath);
+        strcat(header, "> ");
+
+        command = readline(header) ;
+
+        add_history (command) ;
+
+        if(!strcmp("exit", command)){
             break ;
         }else{
             char* token = strtok(command, " ") ;
@@ -30,13 +39,13 @@ int main()
             if (pid < 0) {
                 fprintf(stderr, "Fork Failed");
             } else if (pid == 0) {
-                if (!strcmp("ls\n",command)){
-                    execlp("/home/yosef/Desktop/OS/ls",currentPath,NULL);
-                }else if(!strcmp("pwd\n", command)){
-                    execlp("/home/yosef/Desktop/OS/pwd",currentPath,NULL);
+                if (!strcmp("ls",command)){
+                    execlp("/home/yosef/Desktop/OperatingSystem_MidTermProject/ls",currentPath,NULL);
+                }else if(!strcmp("pwd", command)){
+                    execlp("/home/yosef/Desktop/OperatingSystem_MidTermProject/pwd",currentPath,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
-                    if(!strcmp("..\n", token)){
+                    if(!strcmp("..", token)){
                         if(count(currentPath, '/') > 1){
                             int currentPathLength = strlen(currentPath) ;
                             int i ;
@@ -55,7 +64,7 @@ int main()
                         }
                         return 0 ;
                     }else{
-                        execlp("/home/yosef/Desktop/OS/cd",token,currentPath,NULL);
+                        execlp("/home/yosef/Desktop/OperatingSystem_MidTermProject/cd",token,currentPath,NULL);
                     }
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
