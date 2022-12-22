@@ -7,16 +7,20 @@ int main(int argc, char *argv[]) {
     struct dirent *dir;
     int strSize = strlen(argv[0]) ;
     char addr[strSize-1] ;
-    for(int i=0; i < strSize-1; i++){
+    for(int i=0; i <= strSize-1; i++){
         addr[i] = argv[0][i] ;
     }
+
+    char* addrTok = strtok(addr, "\n");
+    strcpy(addr,addrTok);
+    for(int i=strSize; i < strlen(addr) ; i++){
+        addr[i] = '\0' ;
+    }
+    strcat(argv[1],"/");
+    strcat(argv[1],addr);
     d = opendir(argv[1]);
     if (d) {
-        while ((dir = readdir(d)) != NULL) {
-            if (!strcmp(dir->d_name, addr)){
-                return 2;
-            }
-        }
+        return 2;
     }
     d = opendir(addr);
     if(d){
@@ -24,5 +28,5 @@ int main(int argc, char *argv[]) {
     }
     printf("No such file or directory\n") ;
     
-    return(0);
+    return(-1);
 }
