@@ -17,6 +17,7 @@ int main()
     getcwd(currentPath, sizeof(currentPath));
     
     using_history();
+    FILE *hfile = fopen("history.txt","a");
 
     while (1){
         char* command ;
@@ -25,10 +26,12 @@ int main()
         strcat(header, "> ");
 
         command = readline(header) ;
+        fprintf(hfile, "%s\n", command) ;
 
         add_history (command) ;
 
         if(!strcmp("exit", command)){
+            fclose(hfile);
             break ;
         }else{
             char* token = strtok(command, " ") ;
