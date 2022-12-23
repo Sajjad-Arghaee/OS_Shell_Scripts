@@ -74,6 +74,11 @@ int main()
                     token = strtok(NULL, " ") ;
                     execlp("/bin/cat","cat",token,NULL) ;
                     return 0 ;
+                }else if(!strcmp("cp", token)){
+                    token = strtok(NULL, " ") ;
+                    char* token2 = strtok(NULL, " ") ;
+                    execlp("/bin/cp","cp",token,token2,NULL) ;
+                    return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
                     return 0 ;
