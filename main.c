@@ -70,6 +70,10 @@ int main()
                     token = strtok(NULL, " ") ;
                     execlp("/bin/touch","touch",token,NULL) ;
                     return 0 ;
+                }else if(!strcmp("cat", token)){
+                    token = strtok(NULL, " ") ;
+                    execlp("/bin/cat","cat",token,NULL) ;
+                    return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
                     return 0 ;
@@ -106,6 +110,8 @@ int main()
                     }
                 }else{
                     wait(NULL);
+                    if(!strcmp(token, "cat"))
+                        printf("\n");
                 }
             }
         }
