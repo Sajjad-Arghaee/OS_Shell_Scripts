@@ -94,6 +94,24 @@ int main()
                     }
                     execv("/bin/cp",argv) ;
                     return 0 ;
+                }else if(!strcmp("mv", token)){
+                    int array_capacity = 2 ;
+                    while (token != NULL){
+                        token = strtok(NULL, " ") ;
+                        array_capacity ++ ;
+                    }
+                    char* argv[array_capacity] ;
+                    argv[0] = "mv" ;
+                    int i = 1 ;
+                    char* path ;
+                    path = strtok(commandCopy, " ") ;
+                    while (path != NULL){
+                        path = strtok(NULL, " ") ;
+                        argv[i] = path ;
+                        i++ ; 
+                    }
+                    execv("/bin/mv",argv) ;
+                    return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
                     return 0 ;
