@@ -66,6 +66,10 @@ int main()
                     token = strtok(NULL, " ") ;
                     execlp("/bin/mkdir","mkdir",token,NULL) ;
                     return 0 ;
+                }else if(!strcmp("touch", token)){
+                    token = strtok(NULL, " ") ;
+                    execlp("/bin/touch","touch",token,NULL) ;
+                    return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
                     return 0 ;
