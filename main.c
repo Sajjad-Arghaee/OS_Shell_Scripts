@@ -43,9 +43,9 @@ int main()
                 fprintf(stderr, "Fork Failed");
             } else if (pid == 0) {
                 if (!strcmp("ls",command)){
-                    execlp("/home/yosef/Desktop/OperatingSystem_MidTermProject/ls",currentPath,NULL);
+                    execlp("./ls",currentPath,NULL);
                 }else if(!strcmp("pwd", command)){
-                    execlp("/home/yosef/Desktop/OperatingSystem_MidTermProject/pwd",currentPath,NULL);
+                    execlp("./pwd",currentPath,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
                     if(!strcmp("..", token)){
@@ -60,7 +60,7 @@ int main()
                         }
                         return 0 ;
                     }else{
-                        execlp("/home/yosef/Desktop/OperatingSystem_MidTermProject/cd",token,currentPath,NULL);
+                        execlp("./cd",token,currentPath,NULL);
                     }
                 }else if(!strcmp("mkdir", token)){
                     token = strtok(NULL, " ") ;
