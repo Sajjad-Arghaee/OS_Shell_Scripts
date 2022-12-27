@@ -48,6 +48,9 @@ int main()
                     execlp("./ls",currentPath,NULL);
                 }else if(!strcmp("pwd", command)){
                     execlp("./pwd",currentPath,NULL);
+                }else if(!strcmp("first_word", command)){
+                    token = strtok(NULL, " ") ;
+                    execlp("./first_word",token,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
                     if(!strcmp("..", token)){
