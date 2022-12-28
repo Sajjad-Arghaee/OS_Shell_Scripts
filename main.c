@@ -45,7 +45,8 @@ int main()
                 fprintf(stderr, "Fork Failed");
             } else if (pid == 0) {
                 if (!strcmp("ls",command)){
-                    execlp("./ls",currentPath,NULL);
+                    token = strtok(NULL, " ") ;
+                    execlp("/bin/ls","ls", token, currentPath, NULL);
                 }else if(!strcmp("pwd", command)){
                     execlp("./pwd",currentPath,NULL);
                 }else if(!strcmp("cd", token)){
