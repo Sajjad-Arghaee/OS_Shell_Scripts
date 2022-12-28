@@ -51,6 +51,9 @@ int main()
                 }else if(!strcmp("first_word", command)){
                     token = strtok(NULL, " ") ;
                     execlp("./first_word",token,NULL);
+                }else if(!strcmp("remove_empty_spaces", command)){
+                    token = strtok(NULL, " ") ;
+                    execlp("./remove_empty_spaces",token,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
                     if(!strcmp("..", token)){
