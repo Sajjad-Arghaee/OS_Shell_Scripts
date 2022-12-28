@@ -1,11 +1,10 @@
 #include <stdio.h>
 
-int main ()
+int main (int argc, char *argv[])
 {
-	FILE *file = fopen("file.txt","r");
+	FILE *file = fopen(argv[0],"r");
     char body[10000];
     int i = 0;
-    char sample = "";
 	if (file == NULL)
 	    return 0;
 	do
@@ -16,16 +15,22 @@ int main ()
 
         body[i++] = c;
 	} while(1);
-    body[i] = '\0';
 
     for (int j=0; j<i; j++){
         if (body[j] == 10 || body[j] == 9 || body[j] == 32)
-            body[j] = sample;
+            body[j] = 0;
     }
-    printf(body);
+    char result[1000];
+    int k = 0;
+    for (int j=0; j<i; j++)
+        if(body[j] != 0)
+            result[k++] = body[j];
+    
+    printf("hey");
+    printf("%s\n", result);
 	fclose(file);
-    FILE *file2 = fopen("file.txt","r");
-    fputs("body", file2);
+    FILE *file2 = fopen(argv[0],"w");
+    fputs(result, file2);
     fclose(file2);
 	return(0);
 }
