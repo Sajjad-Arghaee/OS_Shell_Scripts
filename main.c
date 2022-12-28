@@ -113,6 +113,9 @@ int main()
                     }
                     execv("/bin/mv",argv) ;
                     return 0 ;
+                }else if(!strcmp("clear", token)){
+                    execlp("/bin/clear","clear",NULL);
+                    return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
                     return 0 ;
