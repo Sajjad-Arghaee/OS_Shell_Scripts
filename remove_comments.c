@@ -4,7 +4,7 @@ int main (int argc, char *argv[])
 {
 	FILE *file = fopen(argv[0],"r");
     int bufferLength = 255;
-    char buffer[bufferLength]; /* not ISO 90 compatible */
+    char buffer[bufferLength];
 
 
     while(fgets(buffer, bufferLength, file)) {
