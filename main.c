@@ -54,6 +54,9 @@ int main()
                 }else if(!strcmp("remove_empty_spaces", command)){
                     token = strtok(NULL, " ") ;
                     execlp("./remove_empty_spaces",token,NULL);
+                }else if(!strcmp("remove_comments", command)){
+                    token = strtok(NULL, " ") ;
+                    execlp("./remove_comments",token,NULL);
                 }
                 else if(!strcmp("most_frequency", command)){
                     token = strtok(NULL, " ") ;
