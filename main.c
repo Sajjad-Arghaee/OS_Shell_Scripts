@@ -7,8 +7,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-#define MAX_LENGTH 1000
-
 int count(char string[], char ch);
 
 int main()
@@ -45,7 +43,14 @@ int main()
                 fprintf(stderr, "Fork Failed");
             } else if (pid == 0) {
                 if (!strcmp("ls",command)){
-                    execlp("./ls",currentPath,NULL);
+                    token = strtok(NULL, " ") ;
+                    char* argv[4];
+                    argv[0] = "ls";
+                    argv[2] = token ;
+                    argv[1] = currentPath;
+                    argv[3] = NULL;
+                    execv("/bin/ls",argv);
+                    return 0;
                 }else if(!strcmp("pwd", command)){
                     execlp("./pwd",currentPath,NULL);
                 }else if(!strcmp("first_word", command)){
