@@ -9,7 +9,7 @@ int main (int argc, char *argv[])
     int count = 1;
 
     while(fgets(buffer, bufferLength, file) && count <= 10) {
-        printf(buffer);
+        printf("%s",buffer);
         count++;
     }
 
