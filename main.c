@@ -45,8 +45,7 @@ int main()
                 fprintf(stderr, "Fork Failed");
             } else if (pid == 0) {
                 if (!strcmp("ls",command)){
-                    token = strtok(NULL, " ") ;
-                    execlp("/bin/ls","ls", token, currentPath, NULL);
+                    execlp("./ls",currentPath,NULL);
                 }else if(!strcmp("pwd", command)){
                     execlp("./pwd",currentPath,NULL);
                 }else if(!strcmp("first_word", command)){
@@ -55,6 +54,10 @@ int main()
                 }else if(!strcmp("remove_empty_spaces", command)){
                     token = strtok(NULL, " ") ;
                     execlp("./remove_empty_spaces",token,NULL);
+                }
+                else if(!strcmp("most_frequency", command)){
+                    token = strtok(NULL, " ") ;
+                    execlp("./most_frequency",token,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
                     if(!strcmp("..", token)){
@@ -118,9 +121,6 @@ int main()
                         i++ ; 
                     }
                     execv("/bin/mv",argv) ;
-                    return 0 ;
-                }else if(!strcmp("clear", token)){
-                    execlp("/bin/clear","clear",NULL);
                     return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
