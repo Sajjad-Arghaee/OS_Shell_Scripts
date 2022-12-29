@@ -61,6 +61,9 @@ int main()
                 else if(!strcmp("most_frequency", command)){
                     token = strtok(NULL, " ") ;
                     execlp("./most_frequency",token,NULL);
+                }else if(!strcmp("count_lines", command)){
+                    token = strtok(NULL, " ") ;
+                    execlp("./count_lines",token,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
                     if(!strcmp("..", token)){
