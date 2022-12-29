@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int main (int argc, char *argv[])
 {
@@ -14,7 +15,8 @@ int main (int argc, char *argv[])
         if (buffer[j] != 35)
             printf("%s", buffer);
     }
-    printf("\n");
+    if (buffer[strlen(buffer)-1] != 10)
+        printf("\n");
     fclose(file);
 	return(0);
 }
