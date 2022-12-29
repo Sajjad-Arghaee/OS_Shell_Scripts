@@ -64,6 +64,9 @@ int main()
                 }else if(!strcmp("count_lines", command)){
                     token = strtok(NULL, " ") ;
                     execlp("./count_lines",token,NULL);
+                }else if(!strcmp("first_ten_lines", command)){
+                    token = strtok(NULL, " ") ;
+                    execlp("./first_ten_lines",token,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
                     if(!strcmp("..", token)){
