@@ -17,16 +17,17 @@ int main (int argc, char *argv[])
 	} while(1);
 
     for (int j=0; j<i; j++){
-        if (body[j] == 10 || body[j] == 9 || body[j] == 32)
+        if (body[j] == 10 || body[j] == 9 || body[j] == 32 || body[j] == 13)
             body[j] = 0;
     }
+
     char result[1000];
     int k = 0;
     for (int j=0; j<i; j++)
         if(body[j] != 0)
             result[k++] = body[j];
     
-    printf("hey");
+    
     printf("%s\n", result);
 	fclose(file);
     FILE *file2 = fopen(argv[0],"w");
