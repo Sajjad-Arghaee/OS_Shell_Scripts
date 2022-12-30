@@ -7,8 +7,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-#define MAX_LENGTH 1000
-
 int count(char string[], char ch);
 char currentPath[PATH_MAX];
 
@@ -67,7 +65,7 @@ int main()
                     strcpy(absPath,currentPath);
                     strcat(absPath, "/");
                     strcat(absPath, token);
-                    execlp("./first_word",token,NULL);
+                    execlp("./first_word",token,absPath,NULL);
                 }else if(!strcmp("remove_empty_spaces", command)){
                     token = strtok(NULL, " ") ;
                     char absPath[PATH_MAX] ;
@@ -227,4 +225,3 @@ int count(char string[], char ch){
     }
     return c ;
 }
-
