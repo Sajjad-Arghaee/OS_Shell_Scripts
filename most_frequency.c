@@ -1,8 +1,18 @@
 #include <stdio.h> 
 #include <string.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
-    FILE *file = fopen(argv[0], "r");
+    FILE *file;
+    if(access(argv[0], F_OK)==0){
+        file = fopen(argv[0], "r") ;
+    }else{
+        if(access(argv[1], F_OK)==0){
+            file = fopen(argv[1], "r");
+        }else{
+            fprintf(stderr, "No such file\n");
+        }
+    }
     char* word;
     char saved_words[1000][1000];
     int count_words [1000] = {0};
@@ -10,7 +20,7 @@ int main(int argc, char *argv[]) {
     int word_position = 0;
     if (file == NULL)
     {
-        printf( "Intended file failed to open" ) ;
+        // printf( "Intended file failed to open" ) ;
     }
     else {
         char word[1000];
@@ -40,3 +50,4 @@ int main(int argc, char *argv[]) {
     fclose(file);
     return(0);
 }
+
