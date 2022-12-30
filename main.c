@@ -51,28 +51,58 @@ int main()
                 fprintf(stderr, "Fork Failed");
             } else if (pid == 0) {
                 if (!strcmp("ls",command)){
-                    execlp("./ls",currentPath,NULL);
+                    token = strtok(NULL, " ") ;
+                    char* argv[4];
+                    argv[0] = "ls";
+                    argv[2] = token ;
+                    argv[1] = currentPath;
+                    argv[3] = NULL;
+                    execv("/bin/ls",argv);
+                    return 0;
                 }else if(!strcmp("pwd", command)){
                     execlp("./pwd",currentPath,NULL);
                 }else if(!strcmp("first_word", command)){
                     token = strtok(NULL, " ") ;
+                    char absPath[PATH_MAX] ;
+                    strcpy(absPath,currentPath);
+                    strcat(absPath, "/");
+                    strcat(absPath, token);
                     execlp("./first_word",token,NULL);
                 }else if(!strcmp("remove_empty_spaces", command)){
                     token = strtok(NULL, " ") ;
-                    execlp("./remove_empty_spaces",token,NULL);
+                    char absPath[PATH_MAX] ;
+                    strcpy(absPath,currentPath);
+                    strcat(absPath, "/");
+                    strcat(absPath, token);
+                    execlp("./remove_empty_spaces",token,absPath,NULL);
                 }else if(!strcmp("remove_comments", command)){
                     token = strtok(NULL, " ") ;
-                    execlp("./remove_comments",token,NULL);
-                }
-                else if(!strcmp("most_frequency", command)){
+                    char absPath[PATH_MAX] ;
+                    strcpy(absPath,currentPath);
+                    strcat(absPath, "/");
+                    strcat(absPath, token);
+                    execlp("./remove_comments",token,absPath,NULL);
+                }else if(!strcmp("most_frequency", command)){
                     token = strtok(NULL, " ") ;
-                    execlp("./most_frequency",token,NULL);
+                    char absPath[PATH_MAX] ;
+                    strcpy(absPath,currentPath);
+                    strcat(absPath, "/");
+                    strcat(absPath, token);
+                    execlp("./most_frequency",token,absPath,NULL);
                 }else if(!strcmp("count_lines", command)){
                     token = strtok(NULL, " ") ;
-                    execlp("./count_lines",token,NULL);
+                    char absPath[PATH_MAX] ;
+                    strcpy(absPath,currentPath);
+                    strcat(absPath, "/");
+                    strcat(absPath, token);
+                    execlp("./count_lines",token,absPath,NULL);
                 }else if(!strcmp("first_ten_lines", command)){
                     token = strtok(NULL, " ") ;
-                    execlp("./first_ten_lines",token,NULL);
+                    char absPath[PATH_MAX] ;
+                    strcpy(absPath,currentPath);
+                    strcat(absPath, "/");
+                    strcat(absPath, token);
+                    execlp("./first_ten_lines",token,absPath,NULL);
                 }else if(!strcmp("cd", token)){
                     token = strtok(NULL, " ") ;
                     if(!strcmp("..", token)){
@@ -137,6 +167,9 @@ int main()
                     }
                     execv("/bin/mv",argv) ;
                     return 0 ;
+                }else if(!strcmp("clear", token)){
+                    execlp("/bin/clear","clear",NULL);
+                    return 0 ;
                 }else{
                     printf("%s: command not found\n", strtok(command, "\n"));
                     return 0 ;
@@ -194,3 +227,4 @@ int count(char string[], char ch){
     }
     return c ;
 }
+
